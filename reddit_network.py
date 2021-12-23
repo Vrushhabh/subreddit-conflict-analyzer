@@ -1,5 +1,3 @@
-
-
 class Subreddit:
     """
        -A class used to represent a subreddit or a node in the reddit network
@@ -15,6 +13,8 @@ class Subreddit:
        """
     def __init__(self, sub_name):
         self._sub_name = sub_name
+
+class RedditNetwork:
 
 
 
