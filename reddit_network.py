@@ -32,6 +32,8 @@ class RedditNetwork:
 
     Methods
     ----------
+    make_network (file: name):
+        makes network from dataset tsv (txt) file
     insert_subreddit (sub: string):
         inserts subreddit into  network
 
@@ -53,13 +55,27 @@ class RedditNetwork:
     def __init__(self):
         self.network_map = {}
 
+    def make_network(self, string_path, body_check=True):
+        with open(string_path) as f:
+            # makes block of the data from the test cvs file that gets turned into a edge
+            hyperlink_blocks = f.readlines()
+        f.close()
+        index = 1
+        while index < len(hyperlink_blocks):
+            hyperlink = Hyperlink(hyperlink_blocks[index], body_check)
+            self.insert_subreddit(hyperlink.start_sub)
+            self.insert_hyperlink(hyperlink.start_sub, hyperlink.end_sub, hyperlink)
+            index += 1
+
     def insert_subreddit(self, sub: string):
-        if (self.network_map.get(sub, None) is  None):
+        if (self.network_map.get(sub) is  None):
             h_list = []
             self.network_map[sub] = {}
+            #just giving a place holder value
             self.network_map[sub][""] = h_list
 
-    def insert_hyperlink(self, start_sub: string, end_sub:string, hyperlink:Hyperlink):
+    def insert_hyperlink(self, start_sub: string, end_sub: string, hyperlink:Hyperlink):
+        #two cases if the starting_sub already linked the previous sub or if it doesn't in which it creates a new list
         if (self.network_map.get(start_sub) is not None):
             if (self.network_map.get(start_sub).get(end_sub) is None):
                 hyper_list = list()
@@ -67,7 +83,9 @@ class RedditNetwork:
                 self.network_map.get(start_sub, None).update({end_sub : hyper_list})
             else:
                 self.network_map.get(start_sub).get(end_sub).append(hyperlink)
+
     def get_network(self):
+        #basic getter
         return self.network_map
 
 

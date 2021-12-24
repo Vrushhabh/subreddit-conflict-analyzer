@@ -14,11 +14,14 @@ class Hyperlink:
     end_sub : str
         the subreddit that the link takes you to
 
-    post_id: str *
-        You have a chance of  finding the post that the link relates too if you put in
+    body : bool
+    This just lets us know if we are dealing with a link from the body or title of the post
+
+    post_id : str *
+        You have a chance (sometimes posts get deleted) of  finding the post that the link relates too if you put in
         https://www.reddit.com/r/<start_sub>/comments/<post_id> into the google search bar
         this is fun because you can see if you agree with the scores that this dataset assigns to the post (most of
-        the times it does which is cool because most of data was determined by a algorithm)
+        the times it does which is cool because most of data was determined by an algorithm and was not manuel)
 
     date_posted : str
         The date the link was posted
@@ -90,7 +93,7 @@ class Hyperlink:
         Linguistic Inquiry and Word Count (LIWC) gives the percentage of words relating to negative language
     """
     #there are alot of instance variables so we can't just add 20 arguments because of readability
-    def __init__(self, cvs_data : str):
+    def __init__(self, cvs_data : str, body : bool):
         """
        Constructs all the necessary attributes for the hyperlink
 
@@ -100,9 +103,9 @@ class Hyperlink:
            The block of data(representing a hyperlink) gotten from the big tsv data
 
        """
+        #if the link is in the title we will change it shortly after
+        self.body = body
         data_index = cvs_data.split()
-        for i in data_index:
-            print(i)
 
         # taking a block of the big TSV file that represents a edge and contructing a hyperlink from how the
         # data was formatted
