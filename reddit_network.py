@@ -1,3 +1,7 @@
+import string
+
+from hyperlink import Hyperlink
+
 class Subreddit:
 
     def __init__(self, sub_name: str):
@@ -28,13 +32,13 @@ class RedditNetwork:
 
     Methods
     ----------
-    insert_subreddit (sub: Subreddit):
+    insert_subreddit (sub: string):
         inserts subreddit into  network
 
-    insert_hyperlink (start_sub : Subreddit, end_sub : Subreddit, hyperlink : Hyperlink):
+    insert_hyperlink (start_sub : string, end_sub : string, hyperlink : Hyperlink):
         inserts directed hyperlink into the network
 
-    get_hyperlinks (start_sub : Subreddit , end_sub : Subreddit):
+    get_hyperlinks (start_sub : string , end_sub :string)
         returns all the directed hyperlinks (edges) that go from start_sub to end_sub
 
     get_hyperlinks (start_sub : Subreddit):
@@ -45,6 +49,33 @@ class RedditNetwork:
         returns the data structure that represents a graph
 
     """
+
+    def __init__(self):
+        self.network_map = {}
+
+    def insert_subreddit(self, sub: string):
+        if (self.network_map.get(sub, None) is  None):
+            h_list = []
+            self.network_map[sub] = {}
+            self.network_map[sub][""] = h_list
+
+    def insert_hyperlink(self, start_sub: string, end_sub:string, hyperlink:Hyperlink):
+        if (self.network_map.get(start_sub) is not None):
+            if (self.network_map.get(start_sub).get(end_sub) is None):
+                hyper_list = list()
+                hyper_list.append(hyperlink)
+                self.network_map.get(start_sub, None).update({end_sub : hyper_list})
+            else:
+                self.network_map.get(start_sub).get(end_sub).append(hyperlink)
+    def get_network(self):
+        return self.network_map
+
+
+
+
+
+
+
 
 
 

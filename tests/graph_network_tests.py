@@ -2,11 +2,13 @@ from reddit_network import *
 from hyperlink import *
 
 network = RedditNetwork()
+sub_A = string
 sub_A = "A"
 
 network.insert_subreddit(sub_A)
 
 #make sure sub was added to network
+print(network.get_network().get(sub_A))
 assert(network.get_network().get(sub_A) is not None)
 
 offmychest	= "offmychest"
@@ -25,7 +27,7 @@ network.insert_hyperlink(offmychest, askreddit, offmychest_to_askreddit_link)
 
 assert(network.get_network().get(offmychest).get(askreddit)[0].start_sub == "offmychest")
 assert(network.get_network().get(offmychest).get(askreddit)[0].end_sub == "askreddit")
-assert(network.get_network().get(offmychest).get(askreddit)[0].num_of_words == 310)
+assert(network.get_network().get(offmychest).get(askreddit)[0].num_words == 310)
 assert(network.get_network().get(offmychest).get(askreddit)[0].num_of_long_words == 56) # six or more letters
 assert(network.get_network().get(offmychest).get(askreddit)[0].avg_word_length == 4.51612903226)
 
