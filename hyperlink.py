@@ -1,13 +1,12 @@
-
-
 class Hyperlink:
     """
     -A class used represent a link in a body (in a starting subreddit) of a post that leads to another subreddit
-    -Another class was used because SNAP reddit dataset has a lot of the information in the edges (which is good because
+    -Another file was used for less messiness because SNAP reddit dataset has a lot of the information in the edges (which is good because
     more analysis can be done)
     ...
 
-    Attributes
+    Attributes (there are alot (I even cut some ones that I thought were even more irrelevant out from the original
+    data set) so I put a * by the interesting ones)
     ----------
     start_sub : str
         the subreddit that the link comes from
@@ -15,11 +14,14 @@ class Hyperlink:
     end_sub : str
         the subreddit that the link takes you to
 
-    post_id: str
-        You have a chance of  finding the post that the link relates too if you put in
+    body : bool
+    This just lets us know if we are dealing with a link from the body or title of the post
+
+    post_id : str *
+        You have a chance (sometimes posts get deleted) of  finding the post that the link relates too if you put in
         https://www.reddit.com/r/<start_sub>/comments/<post_id> into the google search bar
         this is fun because you can see if you agree with the scores that this dataset assigns to the post (most of
-        the times it does which is cool because most of data was determined by a algorithm)
+        the times it does which is cool because most of data was determined by an algorithm and was not manuel)
 
     date_posted : str
         The date the link was posted
@@ -27,7 +29,7 @@ class Hyperlink:
     time_posted : str
         The time the link was posted
 
-    negative_sentiment : bool
+    negative_sentiment : bool *
         This sentiment variable lets us know if there is some type of conflict or controversy in the post relating
         to the post from another sub. This sentiment was calculated from a trained text based classifier.
         More info in the paper right below
@@ -41,7 +43,7 @@ class Hyperlink:
     char_total_no_spaces : int
         the amount of characters that aren't spaces
 
-    fraction_of_digits : float
+    fraction_of_digits : float *
         this is the percentage of the post that are numbers (more numbers in most cases might mean there are more
         statistics in the post)
 
@@ -51,51 +53,59 @@ class Hyperlink:
     num_words : int
         num of words in the post
 
-    num_unique_words : int
+    num_unique_words : int *
         this can tell us about the vocabulary of the average user in a subreddit if there are enough posts
 
-    num_of_long_words : int
+    num_of_long_words : int *
         the number of long words (6 letters or more) in a post
 
-    avg_word_length : float
+    avg_word_length : float *
         average word length in a post
 
     num_of_sentences : int
         average num of sentences in a post
 
-    AR_index: int
+    AR_index: int *
         Readability score ( that can give a rough idea of what age group the text is ment for
 
-    positive_sentiment_value : float
+    positive_sentiment_value : float *
         How positive the post was according to VADER (Valence Aware Dictionary for sEntiment Reasoning.)
 
-    negative_sentiment_value : float
+    negative_sentiment_value : float *
         How negative the post was according to VADER (Valence Aware Dictionary for sEntiment Reasoning.)
 
-    LIWC_future : float
+    LIWC_future : float *
         Linguistic Inquiry and Word Count (LIWC) gives the percentage of words relating to the future.
 
-    LIWC_present : float
+    LIWC_present : float *
 
-    LIWC_past : float
+    LIWC_past : float *
 
     LIWC_numbers : float
 
     LIWC_social : float
 
-    LIWC_posemo : float
+    LIWC_posemo : float *
         Linguistic Inquiry and Word Count (LIWC) gives the percentage of words relating to positive language
         This was what the label was named in the data set.
 
-    LIWC_negemo : float
+    LIWC_negemo : float *
         Linguistic Inquiry and Word Count (LIWC) gives the percentage of words relating to negative language
     """
     #there are alot of instance variables so we can't just add 20 arguments because of readability
-    #TODO make code  that parses through data and assigns variables
-    def __init__(self, cvs_data):
+    def __init__(self, cvs_data : str, body : bool):
+        """
+       Constructs all the necessary attributes for the hyperlink
+
+       Parameters
+       ----------
+       cvs : str
+           The block of data(representing a hyperlink) gotten from the big tsv data
+
+       """
+        #if the link is in the title we will change it shortly after
+        self.body = body
         data_index = cvs_data.split()
-        for i in data_index:
-            print(i)
 
         # taking a block of the big TSV file that represents a edge and contructing a hyperlink from how the
         # data was formatted
