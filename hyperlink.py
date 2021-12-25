@@ -147,7 +147,11 @@ class Hyperlink:
         self.LWIC_posemo = data_points[48]
         self.LWIC_negemo = data_points[49]
 
-    def get_data(self, instace_vat: str):
+    def get_data(self, instance_var: str):
+        if (instance_var == "num_words"):
+            return self.num_words
+        elif (instance_var == "num_unique_words"):
+            return self.num_unique_words
 
 
 
