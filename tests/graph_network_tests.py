@@ -1,5 +1,8 @@
+import sys
+sys.path.append('../')
 from reddit_network import *
 from hyperlink import *
+
 
 network = RedditNetwork()
 sub_A = string

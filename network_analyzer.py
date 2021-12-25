@@ -25,11 +25,15 @@ def rank_activity(network: dict):
 
         sub_edge_count[sub] = sub_activity
 
-    dict1 = {1: 1, 2: 9, 3: 4}
     sorted_dict = {}
-    sorted_keys = sorted(sub_edge_count, key=sub_edge_count.get)  # [1, 3, 2]
+    sorted_keys = sorted(sub_edge_count, key=sub_edge_count.get)
 
     for w in sorted_keys:
        sorted_dict[w] = sub_edge_count[w]
-    print(sorted_dict)
+
+    #sorted_dict = reversed(sorted_dict)
+    sorted_relevancy = list(reversed(sorted_dict.keys()))
+    print(sorted_relevancy)
+    return sorted_dict, sorted_relevancy
+
 

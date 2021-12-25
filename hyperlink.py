@@ -91,6 +91,13 @@ class Hyperlink:
 
     LIWC_negemo : float *
         Linguistic Inquiry and Word Count (LIWC) gives the percentage of words relating to negative language
+
+    Methods
+    ----------
+    get_data (instance_var: str):
+        This function is made like this to reduce repeating code in network_analyzer.py. This function will get slowly
+        get updated on the basis if I need a specific field for analysis (plus there is alot of data and it seems
+        unnecessary and daunting to add functionality for every field from the start)
     """
     #there are alot of instance variables so we can't just add 20 arguments because of readability
     def __init__(self, cvs_data : str, body : bool):
@@ -139,6 +146,8 @@ class Hyperlink:
         self.LIWC_social = data_points[43]
         self.LWIC_posemo = data_points[48]
         self.LWIC_negemo = data_points[49]
+
+    def get_data(self, instace_vat: str):
 
 
 
