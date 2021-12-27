@@ -11,3 +11,4 @@ mega_network\
     .make_network("/Users/vrushhabh/PycharmProjects/subreddit-conflict-graph-analyzer/soc-redditHyperlinks-title.tsv"
                   ,False)
 network_analyzer.rank_activity(mega_network.get_network())
+network_analyzer.visualize_senti_word_count_corr(mega_network.get_network(), True)

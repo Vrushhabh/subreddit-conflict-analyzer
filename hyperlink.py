@@ -14,7 +14,7 @@ class Hyperlink:
     end_sub : str
         the subreddit that the link takes you to
 
-    body : bool
+    body_check : bool
     This just lets us know if we are dealing with a link from the body or title of the post
 
     post_id : str *
@@ -111,7 +111,7 @@ class Hyperlink:
 
        """
         #if the link is in the title we will change it shortly after
-        self.body = body
+        self.body_check = body
         data_index = cvs_data.split()
 
         # taking a block of the big TSV file that represents a edge and contructing a hyperlink from how the
@@ -152,13 +152,3 @@ class Hyperlink:
             return self.num_words
         elif (instance_var == "num_unique_words"):
             return self.num_unique_words
-
-
-
-
-
-
-
-
-
-
