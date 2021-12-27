@@ -39,7 +39,7 @@ def rank_activity(network: dict):
     sorted_relevancy = list(reversed(sorted_dict.keys()))
     return sorted_dict, sorted_relevancy
 
-def extract_violin_plt_data(network: dict, sub:str, body_check=True, neg_sentiment=True, data_type="num_words"):
+def extract_distribution_plt_data(network: dict, sub:str, body_check=True, neg_sentiment=True, data_type="num_words"):
     """
     This function is ment to extract the data needed to make particular violin plots that looks at
     correlations. These violin plots lets us know a rough correlation of data_types such as word count
@@ -69,7 +69,22 @@ def extract_violin_plt_data(network: dict, sub:str, body_check=True, neg_sentime
         data : [data_type] :
             Returns a list to be made into a violin plot. (data_type refers to the type of the instance variable in
             Hyperlink.py)
-       """
+    """
+    word_count = [int]
+    all_hyper_links = network[sub].keys()
+
+
+    for linked_sub in all_hyper_links:
+        all_links_to_sub = network[sub][linked_sub]
+        for link in all_links_to_sub:
+            print(link.body_check == body_check)
+            if (link.body_check == body_check):
+                print("innner innner")
+                print(link.negative_sentiment == neg_sentiment)
+                if (link.negative_sentiment == neg_sentiment):
+                    word_count.append(link.get_data(data_type))
+    word_count.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
+    return word_count
 
 
 

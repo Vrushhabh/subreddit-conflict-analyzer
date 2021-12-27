@@ -99,8 +99,9 @@ class Hyperlink:
         get updated on the basis if I need a specific field for analysis (plus there is alot of data and it seems
         unnecessary and daunting to add functionality for every field from the start)
     """
-    #there are alot of instance variables so we can't just add 20 arguments because of readability
-    def __init__(self, cvs_data : str, body : bool):
+
+    # there are alot of instance variables so we can't just add 20 arguments because of readability
+    def __init__(self, cvs_data: str, body: bool):
         """
        Constructs all the necessary attributes for the hyperlink
 
@@ -110,7 +111,7 @@ class Hyperlink:
            The block of data(representing a hyperlink) gotten from the big tsv data
 
        """
-        #if the link is in the title we will change it shortly after
+        # if the link is in the title we will change it shortly after
         self.body_check = body
         data_index = cvs_data.split()
 
@@ -152,3 +153,10 @@ class Hyperlink:
             return self.num_words
         elif (instance_var == "num_unique_words"):
             return self.num_unique_words
+        elif (instance_var == "LWIC_negemo"):
+            return self.LWIC_negemo
+        elif (instance_var == "fraction_of_digits"):
+            return self.fraction_of_digits
+        elif (instance_var == "num_of_sentences"):
+            return self.num_of_sentences
+
