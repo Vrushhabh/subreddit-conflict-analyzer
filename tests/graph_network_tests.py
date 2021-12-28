@@ -1,5 +1,8 @@
+import sys
+sys.path.append('../')
 from reddit_network import *
 from hyperlink import *
+
 
 network = RedditNetwork()
 sub_A = string
@@ -38,7 +41,8 @@ mega_network\
 
 #second grow network from hyperlinks from titles of posts
 mega_network\
-    .make_network("/Users/vrushhabh/PycharmProjects/subreddit-conflict-graph-analyzer/soc-redditHyperlinks-title.tsv")
+    .make_network("/Users/vrushhabh/PycharmProjects/subreddit-conflict-graph-analyzer/soc-redditHyperlinks-title.tsv"
+                  ,False)
 network_test = mega_network.get_network()
 #make sure all nodes are in the network (you can go to SNAP (the dataset website) to see where I found these next #s)
 assert(len(network_test) == 55863)
@@ -54,7 +58,7 @@ for k in keys:
 assert(edge_amount == 858488)
 foo = Hyperlink
 
-foo = network_test["cute"]["aww"][1]
+foo = network_test["cat"]["kitten"][0]
 print(foo.num_words)
 print(foo.body)
 print(foo.start_sub)

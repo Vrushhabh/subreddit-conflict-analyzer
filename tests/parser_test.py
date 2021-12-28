@@ -1,3 +1,8 @@
+import sys
+sys.path.append('../')
+from reddit_network import *
+from hyperlink import *
+
 from hyperlink import *
 
 with open("singleEdge_test.cvs") as f:
@@ -5,7 +10,7 @@ with open("singleEdge_test.cvs") as f:
     contents = f.readlines()
 f.close()
 x = 0
-offmychest_to_askreddit_link = Hyperlink(contents[0])
+offmychest_to_askreddit_link = Hyperlink(contents[0], True)
 
 assert (offmychest_to_askreddit_link.start_sub == "offmychest")
 assert (offmychest_to_askreddit_link.end_sub == "askreddit")
