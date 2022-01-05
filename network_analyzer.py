@@ -70,21 +70,68 @@ def extract_distribution_plt_data(network: dict, sub:str, body_check=True, neg_s
             Returns a list to be made into a violin plot. (data_type refers to the type of the instance variable in
             Hyperlink.py)
     """
-    word_count = [int]
+    distribution = []
     all_hyper_links = network[sub].keys()
-
 
     for linked_sub in all_hyper_links:
         all_links_to_sub = network[sub][linked_sub]
         for link in all_links_to_sub:
-            print(link.body_check == body_check)
             if (link.body_check == body_check):
-                print("innner innner")
-                print(link.negative_sentiment == neg_sentiment)
                 if (link.negative_sentiment == neg_sentiment):
-                    word_count.append(link.get_data(data_type))
-    word_count.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
-    return word_count
+                    distribution.append(link.get_data(data_type))
+    distribution.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
+    return distribution
+
+
+
+def extract_correlation_plt_data(network: dict, sub:str, body_check=True,  y="negative_sentiment_value",
+x="num_words"):
+    """
+    This function is ment to extract the data needed to make particular correlation plots that look at
+    the strength of relationship between 2 instance variable in a  sub
+
+    Parameters:
+        network : (dict<str,<str,Hyperlink>>)
+            The reddit network that contains the subreddits that are being ranked
+
+        sub : str
+            The subreddit we want to make the correlation plot for
+
+        body_check : bool
+            Lets the function know whether we are looking at links from the title or the post
+            (this is needed because titles are often times shorter and are used for a different purpose than
+            the body)
+
+        y : str
+            Lets the function know what instance variable is being analyzed for the Hyperlink on the y axis of the
+            scatter plot
+        x: str
+            Lets the function know what instance variable is being analyzed for the Hyperlink on the y axis of the
+            scatter plot
+
+
+    Returns:
+        data : [data_type type]
+            Returns a list to be made into a violin plot. (data_type refers to the type of the instance variable in
+            Hyperlink.py)
+        y_data : [data_type]
+            Returns a list of random variables that are going to be on the y-axis. Potential dependent variables such as
+            things such sentiment which might be correlated things such as word count. (data_type refers to the type of
+            the instance variable in Hyperlink.py)
+
+        x_data : [data_type]
+            Returns a list of random variables that are going to be on the x-axis. Potential independent variables such
+            as things such word count which might be correlated things such as word count. (data_type refers to the type
+            of the instance variable in Hyperlink.py)
+    """
+    y_data = []
+    x_data = []
+    all_hyper_links = network[sub].keys()
+
+
+
+    return y_data, x_data
+
 
 
 
