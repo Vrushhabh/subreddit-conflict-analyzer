@@ -95,7 +95,7 @@ x="num_words"):
             The reddit network that contains the subreddits that are being ranked
 
         sub : str
-            The subreddit we want to make the correlation plot for
+            The subreddit we want to make the correlation plot (scatter) for
 
         body_check : bool
             Lets the function know whether we are looking at links from the title or the post
@@ -127,9 +127,15 @@ x="num_words"):
     y_data = []
     x_data = []
     all_hyper_links = network[sub].keys()
+    for linked_sub in all_hyper_links:
+        all_links_to_sub = network[sub][linked_sub]
+        for link in all_links_to_sub:
+            if (link.body_check == body_check):
+                y_data.append(link.get_data(y))
+                x_data.append(link.get_data(x))
 
-
-
+    y_data.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
+    x_data.pop(0)
     return y_data, x_data
 
 
