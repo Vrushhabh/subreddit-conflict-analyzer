@@ -3,6 +3,24 @@ import pandas as pd
 import matplotlib as plt
 import matplotlib.pyplot as plt
 
+def make_dataframe(network:dict):
+    """
+    It was forgotten that I could manually make a pandas dataframe(so analysis is faster and I don't have to use the
+    extractor functions and don't have to rely on a previously well-made cvs) so this function basically takes the
+    Hyperlink objects I made and makes a dataframe with the values.  To make the runtime lower, extra columns will be
+    added as needed. This is not important but funny enough I remembered this as I was taking my morning shower
+
+    Parameters
+    ----------
+    network (dict<str,<str,Hyperlink>>) :
+    The adjacency list that contains the subreddits that are being ranked
+
+    Returns
+    -------
+    returns the pandas data frame made from the hyperlinks
+    """
+
+
 def rank_activity(network: dict):
     """
     This function looks ranks the activity of each of the subs according to the amount of hyperlinks that comes from
@@ -79,7 +97,8 @@ def extract_distribution_plt_data(network: dict, sub:str, body_check=True, neg_s
             if (link.body_check == body_check):
                 if (link.negative_sentiment == neg_sentiment):
                     distribution.append(link.get_data(data_type))
-    distribution.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
+    if len(distribution) > 0:
+        distribution.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
     return distribution
 
 
@@ -133,6 +152,7 @@ x="num_words"):
             if (link.body_check == body_check):
                 y_data.append(link.get_data(y))
                 x_data.append(link.get_data(x))
+                print(link.get_data(y))
 
     y_data.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
     x_data.pop(0)

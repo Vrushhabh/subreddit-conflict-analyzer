@@ -136,11 +136,11 @@ class Hyperlink:
         self.avg_word_length = float(data_points[10])
         self.num_of_sentences = int(float(data_points[13]))
         self.AR_index = float(data_points[17])
-        self.positive_sentiment_value = data_points[18]
-        self.negative_sentiment_value = data_points[19]
+        self.positive_sentiment_value = float(data_points[18])
+        self.negative_sentiment_value = float(data_points[19])
 
         # LIWC data points
-        self.LIWC_future = data_points[35]
+        self.LIWC_future = float(data_points[35])
         self.LIWC_present = data_points[34]
         self.LIWC_past = data_points[33]
         self.LIWC_numbers = data_points[41]
@@ -159,4 +159,6 @@ class Hyperlink:
             return self.fraction_of_digits
         elif (instance_var == "num_of_sentences"):
             return self.num_of_sentences
+        elif (instance_var == "negative_sentiment_value"):
+            return self.negative_sentiment_value
 
