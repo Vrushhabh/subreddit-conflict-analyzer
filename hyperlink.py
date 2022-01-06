@@ -141,9 +141,9 @@ class Hyperlink:
 
         # LIWC data points
         self.LIWC_future = float(data_points[35])
-        self.LIWC_present = data_points[34]
-        self.LIWC_past = data_points[33]
-        self.LIWC_numbers = data_points[41]
+        self.LIWC_present = float(data_points[34])
+        self.LIWC_past = float(data_points[33])
+        self.LIWC_numbers = float(data_points[41])
         self.LIWC_social = data_points[43]
         self.LWIC_posemo = data_points[48]
         self.LWIC_negemo = data_points[49]
