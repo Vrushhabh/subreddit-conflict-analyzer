@@ -3,7 +3,8 @@ import pandas as pd
 import matplotlib as plt
 import matplotlib.pyplot as plt
 
-def make_dataframe(network:dict, sub_list: [str]):
+
+def make_dataframe(network: dict, sub_list: [str]):
     """
     It was forgotten that I could manually make a pandas dataframe(so analysis is faster and I don't have to use the
     extractor functions and don't have to rely on a previously well-made cvs) so this function basically takes the
@@ -22,33 +23,14 @@ def make_dataframe(network:dict, sub_list: [str]):
     dataframe : pd.DataFrame
         the pandas data frame made from the hyperlinks
     """
-    #the code is very vertical for dataframe parameters for ease of visibility
-    dataframe = pd.DataFrame(columns=["start_sub" ,
-                                      "end_sub",
-                                      "post_id",
-                                      "body_check",
-                                      "date_posted",
-                                      "time_posted" ,
-                                      "negative_sentiment",
-                                      "num_words",
-                                      "num_unique_words",
-                                      "num_of_long_words",
-                                      "avg_word_length",
-                                      "AR_index",
-                                      "positive_sentiment_value",
-                                      "negative_sentiment_value",
-                                      "LWIC_future",
-                                      "LIWC_present",
-                                      "LIWC_past",
-                                      "LWIC_numbers"])
 
-    #have to traverse through 2 dictionaries and edge list (adjacency list for graph network)
-    index = 0
+    rows = []
     for sub in sub_list:
         linked_subs = network[sub].keys()
         for linked_sub in linked_subs:
             # count the number of times the sub_a a posted a link to sub_b
             for hyperlink in network[sub][linked_sub]:
+                # the code is very vertical for dataframe parameters for ease of visibility
                 row = [hyperlink.start_sub,
                        hyperlink.end_sub,
                        hyperlink.post_id,
@@ -68,10 +50,28 @@ def make_dataframe(network:dict, sub_list: [str]):
                        hyperlink.LIWC_past,
                        hyperlink.LIWC_numbers]
 
-                dataframe.loc[len(dataframe)] = row
-                index += 1
+                rows.append(row)
 
-    return dataframe
+    return pd.DataFrame(rows, columns=["start_sub",
+                                      "end_sub",
+                                      "post_id",
+                                      "body_check",
+                                      "date_posted",
+                                      "time_posted",
+                                      "negative_sentiment",
+                                      "num_words",
+                                      "num_unique_words",
+                                      "num_of_long_words",
+                                      "avg_word_length",
+                                      "AR_index",
+                                      "positive_sentiment_value",
+                                      "negative_sentiment_value",
+                                      "LIWC_future",
+                                      "LIWC_present",
+                                      "LIWC_past",
+                                      "LWIC_numbers"])
+
+
 def rank_activity(network: dict):
     """
     This function looks ranks the activity of each of the subs according to the amount of hyperlinks that comes from
@@ -108,7 +108,8 @@ def rank_activity(network: dict):
     sorted_relevancy = list(reversed(sorted_dict.keys()))
     return sorted_dict, sorted_relevancy
 
-def extract_distribution_plt_data(network: dict, sub:str, body_check=True, neg_sentiment=True, data_type="num_words"):
+
+def extract_distribution_plt_data(network: dict, sub: str, body_check=True, neg_sentiment=True, data_type="num_words"):
     """
     This function is ment to extract the data needed to make particular violin plots that looks at
     correlations. These violin plots lets us know a rough correlation of data_types such as word count
@@ -153,9 +154,8 @@ def extract_distribution_plt_data(network: dict, sub:str, body_check=True, neg_s
     return distribution
 
 
-
-def extract_correlation_plt_data(network: dict, sub:str, body_check=True,  y="negative_sentiment_value",
-x="num_words"):
+def extract_correlation_plt_data(network: dict, sub: str, body_check=True, y="negative_sentiment_value",
+                                 x="num_words"):
     """
     This function is ment to extract the data needed to make particular correlation plots that look at
     the strength of relationship between 2 instance variable in a  sub
@@ -208,19 +208,3 @@ x="num_words"):
     y_data.pop(0)  # get rid of place holder map value when node is first initialized (not right type)
     x_data.pop(0)
     return y_data, x_data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
