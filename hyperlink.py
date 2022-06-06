@@ -145,18 +145,11 @@ class Hyperlink:
         self.LIWC_past = data_points[33]
         self.LIWC_numbers = data_points[41]
         self.LIWC_social = data_points[43]
-        self.LWIC_posemo = data_points[48]
-        self.LWIC_negemo = data_points[49]
+        self.LIWC_posemo = data_points[48]
+        self.LIWC_negemo = data_points[49]
+        self.LIWC_money = data_points[79]
+        self.LIWC_relig = data_points[80]
+        self.LIWC_sex = data_points[69]
 
-    def get_data(self, instance_var: str):
-        if (instance_var == "num_words"):
-            return self.num_words
-        elif (instance_var == "num_unique_words"):
-            return self.num_unique_words
-        elif (instance_var == "LWIC_negemo"):
-            return self.LWIC_negemo
-        elif (instance_var == "fraction_of_digits"):
-            return self.fraction_of_digits
-        elif (instance_var == "num_of_sentences"):
-            return self.num_of_sentences
+
 
