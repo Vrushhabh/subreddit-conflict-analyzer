@@ -136,20 +136,20 @@ class Hyperlink:
         self.avg_word_length = float(data_points[10])
         self.num_of_sentences = int(float(data_points[13]))
         self.AR_index = float(data_points[17])
-        self.positive_sentiment_value = data_points[18]
-        self.negative_sentiment_value = data_points[19]
+        self.positive_sentiment_value = float(data_points[18])
+        self.negative_sentiment_value = float(data_points[19])
 
         # LIWC data points
-        self.LIWC_future = data_points[35]
-        self.LIWC_present = data_points[34]
-        self.LIWC_past = data_points[33]
-        self.LIWC_numbers = data_points[41]
-        self.LIWC_social = data_points[43]
-        self.LIWC_posemo = data_points[48]
-        self.LIWC_negemo = data_points[49]
-        self.LIWC_money = data_points[79]
-        self.LIWC_relig = data_points[80]
-        self.LIWC_sex = data_points[69]
+        self.LIWC_future = float(data_points[35])
+        self.LIWC_present = float(data_points[34])
+        self.LIWC_past = float(data_points[33])
+        self.LIWC_numbers = float(data_points[41])
+        self.LIWC_social = float(data_points[43])
+        self.LIWC_posemo = float(data_points[48])
+        self.LIWC_negemo = float(data_points[49])
+        self.LIWC_money = float(data_points[79])
+        self.LIWC_relig = float(data_points[80])
+        self.LIWC_sex = float(data_points[69])
 
 
 
