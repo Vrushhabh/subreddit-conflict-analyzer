@@ -150,6 +150,8 @@ class Hyperlink:
         self.LIWC_money = float(data_points[79])
         self.LIWC_relig = float(data_points[80])
         self.LIWC_sex = float(data_points[69])
+        print(data_index)
+        print("bruh")
 
 
 

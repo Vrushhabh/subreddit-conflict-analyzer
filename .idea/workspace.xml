@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d4e4ed67-9bb9-4626-92b4-5717626b86b1" name="Changes" comment="Fully fix and updated project after error">
+    <list default="true" id="d4e4ed67-9bb9-4626-92b4-5717626b86b1" name="Changes" comment="Convert string values to float">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NotebookFindings/Findings (to_be_continued).ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/NotebookFindings/Findings (to_be_continued).ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hyperlink.py" beforeDir="false" afterPath="$PROJECT_DIR$/hyperlink.py" afterDir="false" />
@@ -71,7 +71,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../test/venv/bin/python" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../subreddit-conflict-graph-analyzer/venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -129,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654482692767</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Convert string values to float">
+      <created>1655510272823</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655510272823</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -145,6 +152,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fully fix and updated project after error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fully fix and updated project after error" />
+    <MESSAGE value="Convert string values to float" />
+    <option name="LAST_COMMIT_MESSAGE" value="Convert string values to float" />
   </component>
 </project>
